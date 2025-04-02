@@ -10,17 +10,14 @@ app:
   name: 完蛋！我被LLM包围了！（战绩排行版）
   use_icon_as_answer_icon: true
 dependencies:
-- current_identifier: null
-  type: github
-  value:
-    github_plugin_unique_identifier: junjiem/db_query_pre_auth:0.0.2@ba9cef69087cbcc1c38cdd3247e6ca3d45a429a2026dfa643a4dd30934750689
-    package: db_query_pre_auth.difypkg
-    repo: junjiem/dify-plugin-tools-dbquery
-    version: v0.0.2
-- current_identifier: null
-  type: marketplace
-  value:
-    marketplace_plugin_unique_identifier: langgenius/tongyi:0.0.13@5a4c38f32498ab259b96833608a6a90c0b29671ecf14af272fbc7cde97e813d1
+  - current_identifier: null
+    type: marketplace
+    value:
+      marketplace_plugin_unique_identifier: junjiem/db_query_pre_auth:0.0.4@42ff23da07a60b140fbd3e2fbe1c282f8ecaf4cd7d4ba9a12874f02995d1fceb
+  - current_identifier: null
+    type: marketplace
+    value:
+      marketplace_plugin_unique_identifier: langgenius/tongyi:0.0.13@5a4c38f32498ab259b96833608a6a90c0b29671ecf14af272fbc7cde97e813d1
 kind: app
 version: 0.1.5
 workflow:
