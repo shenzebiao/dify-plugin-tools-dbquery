@@ -6,6 +6,10 @@
 
 ### Demonstration
 
+Currently supported database types: mysql, oracle, postgresql, or mssql.
+
+目前支持的数据库类型：mysql、oracle、postgresql、mssql。
+
 ![db_query](db_query/_assets/db_query.png)
 
 ![db_query_sql_query](db_query/_assets/db_query_sql_query.png)

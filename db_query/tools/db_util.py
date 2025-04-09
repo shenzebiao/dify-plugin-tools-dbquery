@@ -34,6 +34,8 @@ class DbUtil:
             driver_name = 'oracle+oracledb'
         elif db_type == 'postgresql':
             driver_name = 'postgresql+psycopg2'
+        elif db_type == 'mssql':
+            driver_name = 'mssql+pymssql'
         return driver_name
 
     def get_url(self):
@@ -76,10 +78,11 @@ class DbUtil:
         return records
 
     def test_sql(self):
-        if self.db_type in {'mysql', 'postgresql'}:
-            return "SELECT 1"
-        elif self.db_type == 'oracle':
+        db_type = self.db_type.lower()
+        if db_type == 'oracle':
             return "SELECT 1 FROM DUAL"
+        else:
+            return "SELECT 1"
 
     @staticmethod
     def is_not_empty(s: str):

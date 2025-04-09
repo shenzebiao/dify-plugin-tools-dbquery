@@ -29,13 +29,17 @@ parameters:
         label:
           en_US: PostgreSQL
           zh_Hans: PostgreSQL
+      - value: mssql
+        label:
+          en_US: Microsoft SQL Server
+          zh_Hans: Microsoft SQL Server
     default: mysql
     label:
       en_US: Database type
       zh_Hans: 数据库类型
     human_description:
-      en_US: Used for selecting the database type, mysql, oracle or postgresql.
-      zh_Hans: 用于选择数据库类型，mysql、oracle或postgresql。
+      en_US: Used for selecting the database type, mysql, oracle, postgresql or mssql.
+      zh_Hans: 用于选择数据库类型，mysql、oracle、postgresql或mssql。
     form: llm
   - name: db_host
     type: string
