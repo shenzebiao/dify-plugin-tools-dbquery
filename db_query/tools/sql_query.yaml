@@ -49,7 +49,7 @@ parameters:
       en_US: Database Host
       zh_Hans: 数据库地址
     human_description:
-      en_US: database hostname or IP address (Original string, not URL-encoded string).
+      en_US: Database hostname or IP address (Original string, not URL-encoded string).
       zh_Hans: 数据库的主机名或IP地址（原始字符串，非URL编码字符串）。
     form: llm
   - name: db_port
@@ -59,7 +59,7 @@ parameters:
       en_US: Port
       zh_Hans: 端口
     human_description:
-      en_US: database port.
+      en_US: Database port.
       zh_Hans: 数据库的端口。
     form: llm
   - name: db_username
@@ -69,7 +69,7 @@ parameters:
       en_US: Username
       zh_Hans: 用户名
     human_description:
-      en_US: database username (Original string, not URL-encoded string).
+      en_US: Database username (Original string, not URL-encoded string).
       zh_Hans: 数据库的用户名（原始字符串，非URL编码字符串）。
     form: llm
   - name: db_password
@@ -79,7 +79,7 @@ parameters:
       en_US: Password
       zh_Hans: 密码
     human_description:
-      en_US: database password (Original string, not URL-encoded string).
+      en_US: Database password (Original string, not URL-encoded string).
       zh_Hans: 数据库的密码（原始字符串，非URL编码字符串）。
     form: llm
   - name: db_name
@@ -89,7 +89,7 @@ parameters:
       en_US: Database name
       zh_Hans: 库名
     human_description:
-      en_US: database name (Original string, not URL-encoded string).
+      en_US: Database name (Original string, not URL-encoded string).
       zh_Hans: 数据库的名称（原始字符串，非URL编码字符串）。
     form: llm
   - name: db_properties
@@ -113,3 +113,23 @@ parameters:
       zh_Hans: SQL查询语句，例如：select * from tbl_name
     llm_description: 'SQL query statement, for example: select * from tbl_name'
     form: llm
+  - name: output_format
+    type: select
+    required: true
+    label:
+      en_US: Output format
+      zh_Hans: 输出格式
+    human_description:
+      en_US: Used for selecting the output format, markdown or json.
+      zh_Hans: 用于选择输出格式，markdown或json。
+    options:
+      - value: markdown
+        label:
+          en_US: MARKDOWN
+          zh_Hans: MARKDOWN
+      - value: json
+        label:
+          en_US: JSON
+          zh_Hans: JSON
+    default: markdown
+    form: form

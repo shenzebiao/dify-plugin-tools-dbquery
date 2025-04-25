@@ -44,6 +44,8 @@ class SqlQueryTool(Tool):
         if statement.get_type() != 'SELECT':
             raise ValueError("Query SQL can only be a single SELECT statement")
 
+        output_format = tool_parameters.get("output_format", "markdown").lower()
+
         try:
             db = DbUtil(db_type=db_type,
                         username=db_username, password=db_password,
@@ -56,9 +58,13 @@ class SqlQueryTool(Tool):
 
         try:
             records = db.run_query(query_sql)
-            text = tabulate.tabulate(records, headers="keys", tablefmt="github")
-            yield self.create_text_message(text)
         except Exception as e:
             message = "SQL query execution exception."
             logging.exception(message)
             raise Exception(message + " {}".format(e))
+
+        if output_format == "json":
+            yield self.create_json_message({"records": records})
+        else:
+            text = tabulate.tabulate(records, headers="keys", tablefmt="github")
+            yield self.create_text_message(text)

@@ -48,7 +48,7 @@ credentials_for_provider:
       en_US: Database Host
       zh_Hans: 数据库地址
     human_description:
-      en_US: database hostname or IP address (Original string, not URL-encoded string).
+      en_US: Database hostname or IP address (Original string, not URL-encoded string).
       zh_Hans: 数据库的主机名或IP地址（原始字符串，非URL编码字符串）。
   db_port:
     type: text-input
@@ -57,7 +57,7 @@ credentials_for_provider:
       en_US: Port
       zh_Hans: 端口
     human_description:
-      en_US: database port (Original string, not URL-encoded string).
+      en_US: Database port (Original string, not URL-encoded string).
       zh_Hans: 数据库的端口（原始字符串，非URL编码字符串）。
   db_username:
     type: text-input
@@ -66,7 +66,7 @@ credentials_for_provider:
       en_US: Username
       zh_Hans: 用户名
     human_description:
-      en_US: database username (Original string, not URL-encoded string).
+      en_US: Database username (Original string, not URL-encoded string).
       zh_Hans: 数据库的用户名（原始字符串，非URL编码字符串）。
   db_password:
     type: secret-input
@@ -75,7 +75,7 @@ credentials_for_provider:
       en_US: Password
       zh_Hans: 密码
     human_description:
-      en_US: database password (Original string, not URL-encoded string).
+      en_US: Database password (Original string, not URL-encoded string).
       zh_Hans: 数据库的密码（原始字符串，非URL编码字符串）。
   db_name:
     type: text-input
@@ -84,7 +84,7 @@ credentials_for_provider:
       en_US: Database name
       zh_Hans: 库名
     human_description:
-      en_US: database name.
+      en_US: Database name.
       zh_Hans: 数据库的名称。
   db_properties:
     type: text-input
