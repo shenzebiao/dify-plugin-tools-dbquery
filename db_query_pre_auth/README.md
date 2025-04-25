@@ -30,6 +30,25 @@ Currently supported database types: mysql, oracle, postgresql, or mssql.
 
 
 
+### Examples 示例
+
+- [完蛋！我被LLM包围了！（Dify1.0战绩排行版）](https://github.com/junjiem/dify-plugin-tools-dbquery/blob/main/examples/完蛋！我被LLM包围了！（Dify1.0战绩排行版）.yml)
+
+- [完蛋！我被LLM包围了！（Dify1.0战绩排行+留言版）](https://github.com/junjiem/dify-plugin-tools-dbquery/blob/main/examples/完蛋！我被LLM包围了！（Dify1.0战绩排行+留言版）.yml)
+
+
+![](_assets/llm_riddles1.png)
+
+![](_assets/llm_riddles2.png)
+
+![](_assets/llm_riddles3.png)
+
+
+
+---
+
+
+
 ### FAQ
 
 #### 1. How to Handle Errors When Installing Plugins? 安装插件时遇到异常应如何处理？
