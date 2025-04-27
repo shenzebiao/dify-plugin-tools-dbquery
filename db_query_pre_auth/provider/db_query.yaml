@@ -33,6 +33,10 @@ credentials_for_provider:
         label:
           en_US: PostgreSQL
           zh_Hans: PostgreSQL
+      - value: mssql
+        label:
+          en_US: Microsoft SQL Server
+          zh_Hans: Microsoft SQL Server
     default: mysql
     label:
       en_US: Database type
