@@ -17,7 +17,6 @@ class SqlQueryTool(Tool):
         invoke tools
         """
         db_type = tool_parameters.get("db_type", "")
-        print(db_type)
         if not db_type:
             raise ValueError("Please select the database type")
         db_host = tool_parameters.get("db_host", "")
@@ -67,5 +66,5 @@ class SqlQueryTool(Tool):
         if output_format == "json":
             yield self.create_json_message({"records": records})
         else:
-            text = tabulate.tabulate(records, headers="keys", tablefmt="github")
+            text = tabulate.tabulate(records, headers="keys", tablefmt="github", floatfmt="")
             yield self.create_text_message(text)

@@ -66,5 +66,5 @@ class SqlQueryTool(Tool):
         if output_format == "json":
             yield self.create_json_message({"records": records})
         else:
-            text = tabulate.tabulate(records, headers="keys", tablefmt="github")
+            text = tabulate.tabulate(records, headers="keys", tablefmt="github", floatfmt="")
             yield self.create_text_message(text)
