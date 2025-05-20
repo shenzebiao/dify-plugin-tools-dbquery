@@ -16,9 +16,9 @@ Database Query Tools (Pre-authorization)
 
 数据库查询工具（预授权）
 
-Currently supported database types: mysql, oracle, oracle11g, postgresql, or mssql.
+Currently supported database types: mysql, oracle, [oracle11g](#2-how-to-connect-to-oracle-11g--如何连接oracle-11g), postgresql, or mssql.
 
-目前支持的数据库类型：mysql、oracle、oracle11g、postgresql、mssql。
+目前支持的数据库类型：mysql、oracle、[oracle11g](#2-how-to-connect-to-oracle-11g--如何连接oracle-11g)、postgresql、mssql。
 
 ![db_query_pre_auth](_assets/db_query_pre_auth.png)
 
