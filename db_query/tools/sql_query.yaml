@@ -25,6 +25,10 @@ parameters:
         label:
           en_US: Oracle
           zh_Hans: Oracle
+      - value: oracle11g
+        label:
+          en_US: Oracle11g
+          zh_Hans: Oracle11g
       - value: postgresql
         label:
           en_US: PostgreSQL
@@ -38,8 +42,8 @@ parameters:
       en_US: Database type
       zh_Hans: 数据库类型
     human_description:
-      en_US: Used for selecting the database type, mysql, oracle, postgresql or mssql.
-      zh_Hans: 用于选择数据库类型，mysql、oracle、postgresql或mssql。
+      en_US: Used for selecting the database type, mysql, oracle, oracle11g, postgresql or mssql.
+      zh_Hans: 用于选择数据库类型，mysql、oracle、oracle11g、postgresql或mssql。
     form: llm
   - name: db_host
     type: string

@@ -16,9 +16,9 @@ Database Query Tools (Pre-authorization)
 
 数据库查询工具（预授权）
 
-Currently supported database types: mysql, oracle, postgresql, or mssql.
+Currently supported database types: mysql, oracle, oracle11g, postgresql, or mssql.
 
-目前支持的数据库类型：mysql、oracle、postgresql、mssql。
+目前支持的数据库类型：mysql、oracle、oracle11g、postgresql、mssql。
 
 ![db_query_pre_auth](_assets/db_query_pre_auth.png)
 
@@ -64,7 +64,56 @@ Once this field is added, the Dify platform will allow the installation of all p
 添加该字段后，Dify 平台将允许安装所有未在 Dify Marketplace 上架（审核）的插件，可能存在安全隐患。
 
 
-#### 2. How to install the offline version 如何安装离线版本
+#### 2. How to connect to oracle 11g  如何连接Oracle 11g
+
+2.1、下载 oracle11g 的 client，这里下的是 11.2.0.4.0 版本
+
+https://www.oracle.com/database/technologies/instant-client/downloads.html
+
+比如：instantclient-basic-linux.x64-11.2.0.4.0.zip
+
+
+2.2、上传 oracle 的 client 到宿主机的 dify 的挂载目录
+
+将 instantclient-basic-linux.x64-11.2.0.4.0.zip 解压后的 instantclient_11_2 目录放到 docker/volumes 下面
+> 注：需要将 `instantclient_11_2` 中`libclntsh.so.11.1` 改成 `libclntsh.so`、 `libocci.so.11.1` 改成 `libocci.so`
+
+2.3、在 `docker/docker-compose.yml` 中进行配置
+```
+# 在 plugin_daemon 下，添加一个变量
+environment:
+  ......
+  LD_LIBRARY_PATH: "/root/instantclient_11_2:$LD_LIBRARY_PATH"
+```
+
+Red Hat 系（如 CentOS、RHEL）64 位：
+```
+# 在 plugin_daemon 下，添加三个挂载
+volumes:
+  ......
+  - ./volumes/instantclient_11_2:/root/instantclient_11_2
+  - /usr/lib64/libaio.so.1.0.1:/usr/lib/x86_64-linux-gnu/libaio.so.1.0.1
+  - /usr/lib64/libaio.so.1:/usr/lib/x86_64-linux-gnu/libaio.so.1
+```
+
+Debian 系（如 Ubuntu）64 位：
+```
+# 在 plugin_daemon 下，添加三个挂载
+volumes:
+  ......
+  - ./volumes/instantclient_11_2:/root/instantclient_11_2
+  - /usr/lib/x86_64-linux-gnu/libaio.so.1.0.1:/usr/lib/x86_64-linux-gnu/libaio.so.1.0.1
+  - /usr/lib/x86_64-linux-gnu/libaio.so.1:/usr/lib/x86_64-linux-gnu/libaio.so.1
+```
+
+2.4、重启 plugin_daemon
+```shell
+docker stop docker-plugin_daemon-1
+docker compose up -d plugin_daemon
+```
+
+
+#### 3. How to install the offline version 如何安装离线版本
 
 Scripting tool for downloading Dify plugin package from Dify Marketplace and Github and repackaging [true] offline package (contains dependencies, no need to be connected to the Internet).
 
