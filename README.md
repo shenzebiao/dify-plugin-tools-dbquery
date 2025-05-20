@@ -113,3 +113,14 @@ Scripting tool for downloading Dify plugin package from Dify Marketplace and Git
 
 Github Repo: https://github.com/junjiem/dify-plugin-repackaging
 
+
+
+---
+
+
+
+### Star history
+
+[![Star History Chart](https://api.star-history.com/svg?repos=junjiem/dify-plugin-tools-dbquery&type=Date)](https://star-history.com/#junjiem/dify-plugin-tools-dbquery&Date)
+
+
