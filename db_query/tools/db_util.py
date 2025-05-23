@@ -29,6 +29,12 @@ class DbUtil:
             oracledb.init_oracle_client()
         self.engine = create_engine(self.get_url(), pool_size=100, pool_recycle=36)
 
+    def __enter__(self):
+        return self
+
+    def __exit__(self, exc_type, exc_val, exc_tb):
+        self.close()
+
     def get_driver_name(self):
         driver_name = self.db_type
         if self.db_type == 'mysql':
@@ -59,6 +65,10 @@ class DbUtil:
             url = f"{url}?{self.properties}"
         logging.info(f"url: {url}")
         return url
+
+    def close(self):
+        """Close all connections in the engine."""
+        self.engine.dispose()
 
     def run_query(self, query_sql: str) -> list[dict]:
         '''
