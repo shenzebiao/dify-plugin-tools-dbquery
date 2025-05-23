@@ -24,13 +24,13 @@ class DbQueryProvider(ToolProvider):
             raise ValueError("Database port can be empty or fill with integer value")
         db_name = credentials.get("db_name", "")
         db_properties = credentials.get("db_properties", "")
+
         try:
-            db = DbUtil(db_type=db_type,
+            with DbUtil(db_type=db_type,
                         username=db_username, password=db_password,
                         host=db_host, port=db_port,
-                        database=db_name, properties=db_properties)
-            db.run_query(db.test_sql())
+                        database=db_name, properties=db_properties) as db:
+                db.run_query(db.test_sql())
         except Exception as e:
-            message = "Database connection failure."
-            logging.exception(message)
-            raise Exception(message + " {}".format(e))
+            logging.exception("Database connection failed: %s", str(e))
+            raise RuntimeError(f"Error connection database: {e}") from e

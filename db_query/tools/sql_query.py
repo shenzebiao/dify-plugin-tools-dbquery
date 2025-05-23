@@ -47,21 +47,14 @@ class SqlQueryTool(Tool):
         output_format = tool_parameters.get("output_format", "markdown").lower()
 
         try:
-            db = DbUtil(db_type=db_type,
+            with DbUtil(db_type=db_type,
                         username=db_username, password=db_password,
                         host=db_host, port=db_port,
-                        database=db_name, properties=db_properties)
+                        database=db_name, properties=db_properties) as db:
+                records = db.run_query(query_sql)
         except Exception as e:
-            message = "Database connection creation exception."
-            logging.exception(message)
-            raise Exception(message + " {}".format(e))
-
-        try:
-            records = db.run_query(query_sql)
-        except Exception as e:
-            message = "SQL query execution exception."
-            logging.exception(message)
-            raise Exception(message + " {}".format(e))
+            logging.exception("SQL query execution failed: %s", str(e))
+            raise RuntimeError(f"Error executing SQL: {e}") from e
 
         if output_format == "json":
             yield self.create_json_message({"records": records})
