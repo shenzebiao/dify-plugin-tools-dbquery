@@ -1,5 +1,6 @@
 import logging
 from typing import Any, Generator
+import threading
 
 import sqlparse
 import tabulate
@@ -10,6 +11,40 @@ from tools.db_util import DbUtil
 
 
 class SqlQueryTool(Tool):
+    _db_cache: dict[str, DbUtil] = {}
+    _cache_lock = threading.Lock()
+
+    def _get_db_instance(self, db_type, db_host, db_port, db_username, db_password, db_name, db_properties) -> DbUtil:
+        """
+        Get or create a cached DbUtil instance.
+        """
+        cache_key = f"{db_type}:{db_host}:{db_port}:{db_username}:{db_name}:{db_properties}"
+
+        with self._cache_lock:
+            print(self._db_cache)
+            db = self._db_cache.get(cache_key)
+            if db and db.is_connected():
+                return db
+
+            # 如果旧实例断开或不存在，则重新创建
+            if db:
+                try:
+                    db.close()
+                except Exception:
+                    logging.warning("Failed to close stale DB connection: %s", cache_key)
+
+            db = DbUtil(
+                db_type=db_type,
+                username=db_username,
+                password=db_password,
+                host=db_host,
+                port=db_port,
+                database=db_name,
+                properties=db_properties
+            )
+            self._db_cache[cache_key] = db
+            return db
+
     def _invoke(
             self, tool_parameters: dict[str, Any]
     ) -> Generator[ToolInvokeMessage, None, None]:
@@ -47,11 +82,8 @@ class SqlQueryTool(Tool):
         output_format = tool_parameters.get("output_format", "markdown").lower()
 
         try:
-            with DbUtil(db_type=db_type,
-                        username=db_username, password=db_password,
-                        host=db_host, port=db_port,
-                        database=db_name, properties=db_properties) as db:
-                records = db.run_query(query_sql)
+            db = self._get_db_instance(db_type, db_host, db_port, db_username, db_password, db_name, db_properties)
+            records = db.run_query(query_sql)
         except Exception as e:
             logging.exception("SQL query execution failed: %s", str(e))
             raise RuntimeError(f"Error executing SQL: {e}") from e

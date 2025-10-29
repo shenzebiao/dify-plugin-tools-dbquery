@@ -99,3 +99,11 @@ class DbUtil:
     @staticmethod
     def is_not_empty(s: str):
         return s is not None and s.strip() != ""
+
+    def is_connected(self):
+        try:
+            with self.engine.connect() as conn:
+                conn.execute(self.test_sql())
+            return True
+        except Exception:
+            return False
