@@ -21,7 +21,7 @@ class SqlQueryTool(Tool):
         cache_key = f"{db_type}:{db_host}:{db_port}:{db_username}:{db_name}:{db_properties}"
 
         with self._cache_lock:
-            print(self._db_cache)
+            # print(self._db_cache)
             db = self._db_cache.get(cache_key)
             if db and db.is_connected():
                 return db
