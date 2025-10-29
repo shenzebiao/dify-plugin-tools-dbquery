@@ -32,7 +32,7 @@ class SqlQueryTool(Tool):
         if not db_password:
             raise ValueError("Please fill in the database password")
         db_name = self.runtime.credentials["db_name"]
-        db_properties = self.runtime.credentials["db_properties"]
+        db_properties = self.runtime.credentials.get('db_properties', "")
 
         query_sql = tool_parameters.get("query_sql", "")
         if not query_sql:
