@@ -1,6 +1,6 @@
 identity:
   name: sql_query_pre_auth
-  author: junjiem
+  author: shenzebiao
   label:
     en_US: SQL Query (Pre-authorization)
     zh_Hans: SQL查询（预授权）
